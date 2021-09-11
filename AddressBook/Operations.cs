@@ -53,23 +53,24 @@ namespace AddressBook
             }
         }
         //Edit() method for Edit the Contacts
-        public void Edit(string f_name,string l_name,string add)//parameters given by the user
+        public void Edit(string name,string f_name,string l_name,string add)//parameters given by the user
         {
             int index = -1;
             for(int i = 0; i <listcontacts.Count; i++)
             {
-                if(listcontacts[i].first_Name == f_name)
+                if(listcontacts[i].first_Name == name)
                 {
                     index = i;
                 }
             }
             if(index >=0)
             {
-                var editContact = listcontacts[index];                
+                var editContact = listcontacts[index];
+                editContact.first_Name = f_name;
                 editContact.last_Name = l_name;
                 editContact.address = add;
                 listcontacts[index] = editContact;
-                Console.WriteLine("The Data of {0} is Edited ", f_name);
+                Console.WriteLine("The Data of {0} is Edited ", name);
             }
             else
             {
