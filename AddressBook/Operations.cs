@@ -37,5 +37,19 @@ namespace AddressBook
                 email = email
             }) ;
         }
+        public void Print()
+        {
+            foreach(var i in listcontacts)
+            {
+                Console.WriteLine("First Name : " + i.first_Name);
+                Console.WriteLine("Last Name : " + i.last_Name);
+                Console.WriteLine("Address : " + i.address);
+                Console.WriteLine("City Name : " + i.city);
+                Console.WriteLine("State Name : " + i.state);
+                Console.WriteLine("Zip Code : " + i.zip);
+                Console.WriteLine("Phone No. : " + i.phone_No);
+                Console.WriteLine("Email ID : " + i.email);
+            }
+        }
     }
 }

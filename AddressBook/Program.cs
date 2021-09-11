@@ -9,6 +9,7 @@ namespace AddressBook
             Console.WriteLine("Address Book Program");
             Operations op = new Operations();
             op.Add();
+            op.Print();
         }
     }
 }
