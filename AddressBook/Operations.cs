@@ -6,8 +6,8 @@ namespace AddressBook
 {
     public class Operations
     {
-        List<Contacts> listcontacts = new List<Contacts>();
-        public void Add()
+        List<Contacts> listcontacts = new List<Contacts>();//list declaration to store the contact details
+        public void Add()//add method to add the contacts
         {
             Console.Write("Enter First Name : ");
             string first_Name =Console.ReadLine();
@@ -25,6 +25,7 @@ namespace AddressBook
             double phone_No = Convert.ToDouble(Console.ReadLine());
             Console.Write("Enter E-mail ID : ");
             string email = Console.ReadLine();
+            //adding the details in list
             listcontacts.Add(new Contacts()
             {
                 first_Name = first_Name,
@@ -37,7 +38,7 @@ namespace AddressBook
                 email = email
             }) ;
         }
-        public void Print()
+        public void Print()//Print() method for the Printing Contacts
         {
             foreach(var i in listcontacts)
             {
@@ -51,7 +52,8 @@ namespace AddressBook
                 Console.WriteLine("Email ID : " + i.email);
             }
         }
-        public void Edit(string f_name,string l_name,string add)
+        //Edit() method for Edit the Contacts
+        public void Edit(string f_name,string l_name,string add)//parameters given by the user
         {
             int index = -1;
             for(int i = 0; i <listcontacts.Count; i++)
@@ -74,7 +76,8 @@ namespace AddressBook
                 Console.WriteLine("This Name is Not in List ");
             }
         }
-        public void Delete(string f_name)
+        //Delete() method for Deleting the Contacts
+        public void Delete(string f_name)//First Name is passed into method to check the contact
         {
             int index = -1;
             for (int i = 0; i < listcontacts.Count; i++)
