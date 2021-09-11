@@ -51,5 +51,28 @@ namespace AddressBook
                 Console.WriteLine("Email ID : " + i.email);
             }
         }
+        public void Edit(string f_name,string l_name,string add)
+        {
+            int index = -1;
+            for(int i = 0; i <listcontacts.Count; i++)
+            {
+                if(listcontacts[i].first_Name == f_name)
+                {
+                    index = i;
+                }
+            }
+            if(index >=0)
+            {
+                var editContact = listcontacts[index];
+                editContact.first_Name = f_name;
+                editContact.last_Name = l_name;
+                editContact.address = add;
+                listcontacts[index] = editContact;
+            }
+            else
+            {
+                Console.WriteLine("This Name is Not in List ");
+            }
+        }
     }
 }
