@@ -63,11 +63,31 @@ namespace AddressBook
             }
             if(index >=0)
             {
-                var editContact = listcontacts[index];
-                editContact.first_Name = f_name;
+                var editContact = listcontacts[index];                
                 editContact.last_Name = l_name;
                 editContact.address = add;
                 listcontacts[index] = editContact;
+                Console.WriteLine("The Data of {0} is Edited ", f_name);
+            }
+            else
+            {
+                Console.WriteLine("This Name is Not in List ");
+            }
+        }
+        public void Delete(string f_name)
+        {
+            int index = -1;
+            for (int i = 0; i < listcontacts.Count; i++)
+            {
+                if (listcontacts[i].first_Name == f_name)
+                {
+                    index = i;
+                }
+            }
+            if (index >= 0)
+            {
+                listcontacts.RemoveAt(index);
+                Console.WriteLine("The Data of {0} is Deleted ",f_name);
             }
             else
             {
