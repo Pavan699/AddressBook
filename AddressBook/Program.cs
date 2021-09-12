@@ -44,7 +44,7 @@ namespace AddressBook
                         string f_name = Console.ReadLine();
                         op.Delete(f_name);//Delete the Contact by passing First Name from users
                         count++;
-                        break;
+                        break;                 
                     default:
                         Console.WriteLine("End");//Default Condition For Exit the while loop
                         defcount++;

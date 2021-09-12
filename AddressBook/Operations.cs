@@ -7,6 +7,9 @@ namespace AddressBook
     public class Operations
     {
         List<Contacts> listcontacts = new List<Contacts>();//list declaration to store the contact details
+
+        Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();//Dictionary for the multiple address books
+
         public void Add(int num)//add method to add the contacts
         {          
             for (int i = 0; i < num ; i++)
@@ -42,18 +45,32 @@ namespace AddressBook
                 });
             }
         }
-        public void Print()//Print() method for the Printing Contacts
+        
+        public void Print()//Uniqe method to check the repeated Contact
         {
-            foreach(var i in listcontacts)
+            for (int i = 0; i < listcontacts.Count; i++)
             {
-                Console.WriteLine("First Name : " + i.first_Name);
-                Console.WriteLine("Last Name : " + i.last_Name);
-                Console.WriteLine("Address : " + i.address);
-                Console.WriteLine("City Name : " + i.city);
-                Console.WriteLine("State Name : " + i.state);
-                Console.WriteLine("Zip Code : " + i.zip);
-                Console.WriteLine("Phone No. : " + i.phone_No);
-                Console.WriteLine("Email ID : " + i.email);
+                Contacts contact = listcontacts[i];
+
+                if (!addressBook.ContainsKey(contact.first_Name))//if condition to check the key is present or not
+                {
+                    addressBook.Add(contact.first_Name, contact);//if not the add into the addressbook
+                }
+                else
+                {
+                    Console.WriteLine("This Name {0} is already there", contact.first_Name);
+                }
+            }                     
+            foreach (var i in addressBook)//print the contact
+            {
+                Console.WriteLine("First Name :::: " + i.Key );
+                Console.WriteLine("Last Name : " + i.Value.last_Name);
+                Console.WriteLine("Address : " + i.Value.address);
+                Console.WriteLine("City Name : " + i.Value.city);
+                Console.WriteLine("State Name : " + i.Value.state);
+                Console.WriteLine("Zip Code : " + i.Value.zip);
+                Console.WriteLine("Phone No. : " + i.Value.phone_No);
+                Console.WriteLine("Email ID : " + i.Value.email);            
             }
         }
         //Edit() method for Edit the Contacts
@@ -94,7 +111,7 @@ namespace AddressBook
             }
             if (index >= 0)
             {
-                listcontacts.RemoveAt(index);
+                listcontacts.RemoveAt(index);//Remove the contact 
                 Console.WriteLine("The Data of {0} is Deleted ",f_name);
             }
             else
