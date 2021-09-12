@@ -21,7 +21,9 @@ namespace AddressBook
                 switch(choice)
                 {
                     case 1:
-                        op.Add();//Calling Add() method to add contact in Address-Book
+                        Console.WriteLine("Enter How many Contacts You want to enter : ");
+                        int num = Convert.ToInt32(Console.ReadLine());
+                        op.Add(num);//Calling Add() method to add contact in Address-Book
                         count++;
                         break;
                     case 2:
