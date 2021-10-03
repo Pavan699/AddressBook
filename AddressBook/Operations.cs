@@ -149,13 +149,15 @@ namespace AddressBook
 
             foreach (Contacts i in listcontactsCity)
             {
-                Console.WriteLine("Name present in {0} City is : {1}", cityName, i.first_Name);               
+                Console.WriteLine("Name present in {0} City is : {1}", cityName, i.first_Name);
+                Console.WriteLine("Phone No. is : " + i.phone_No);
             }
             listcontactsState = listcontacts.FindAll(x => (x.state == statename));//Lambda Expression to check the Names in State
 
             foreach (Contacts i in listcontactsState)
             {
                 Console.WriteLine("Name present in {0} State is : {1}", statename, i.first_Name);
+                Console.WriteLine("Phone No. is : " + i.phone_No);
             }
         }
         
