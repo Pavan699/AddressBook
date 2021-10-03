@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace AddressBook
 {
     public class Operations
     {
         List<Contacts> listcontacts = new List<Contacts>();//list declaration to store the contact details
-
+        List<Contacts> listcontacts2 = new List<Contacts>();
         Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();//Dictionary for the multiple address books
-
+        Dictionary<string, Contacts> resultAddBook = new Dictionary<string, Contacts>();
         public void Add(int num)//add method to add the contacts
         {          
             for (int i = 0; i < num ; i++)
@@ -56,10 +57,10 @@ namespace AddressBook
                 {
                     addressBook.Add(contact.first_Name, contact);//if not the add into the addressbook
                 }
-                else
-                {
-                    Console.WriteLine("This Name {0} is already there", contact.first_Name);
-                }
+                // else
+                // {
+                //     Console.WriteLine("This Name {0} is already there", contact.first_Name);
+                // }
             }                     
             foreach (var i in addressBook)//print the contact
             {
@@ -77,11 +78,11 @@ namespace AddressBook
         public void Edit(string name,string f_name,string l_name,string add)//parameters given by the user
         {
             int index = -1;
-            for(int i = 0; i <listcontacts.Count; i++)
+            for(int i = 0; i <listcontacts.Count; i++)//for loop to check the name is present or not
             {
                 if(listcontacts[i].first_Name == name)
                 {
-                    index = i;
+                    index = i;//If name is Present, index is chenged by the position of matched first_name
                 }
             }
             if(index >= 0)
@@ -119,5 +120,20 @@ namespace AddressBook
                 Console.WriteLine("This Name is Not in List ");
             }
         }
+        /// <summary>
+        /// SearchContactLambda() method to find and print the persons having entered city ans stste names
+        /// </summary>
+        /// <param name="cityName">City Name to find the Persons</param>
+        /// <param name="statename">State Name to find Persons</param>
+        public void SearchContactLambda(string cityName,string statename)
+        {          
+            listcontacts2 = listcontacts.FindAll(x => (x.city == cityName || x.state == statename));//Lambda Expression
+
+            foreach (Contacts i in listcontacts2)
+            {
+                Console.WriteLine("First Name : "+i.first_Name);               
+            }
+        }
+        
     }
 }

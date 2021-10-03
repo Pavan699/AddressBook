@@ -1,4 +1,5 @@
 ﻿using System;
+using NLog;
 
 namespace AddressBook
 {
@@ -15,7 +16,7 @@ namespace AddressBook
 
             while (defcount == 0)
             {
-                Console.WriteLine("1:Add Contact  2:Print Contact  3:Edit Contact  4:Delete Contact 5:Exit");
+                Console.WriteLine("1:Add Contact  2:Print Contact  3:Edit Contact  4:Delete Contact 5:FindContact 6.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());//variable for taking choice from the user
                 //Switch Case for doing Operations
                 switch(choice)
@@ -44,7 +45,14 @@ namespace AddressBook
                         string f_name = Console.ReadLine();
                         op.Delete(f_name);//Delete the Contact by passing First Name from users
                         count++;
-                        break;                 
+                        break;
+                    case 5:
+                        Console.Write("Enter City-Name And State-Name to find the Persons : ");
+                        string cname = Console.ReadLine();
+                        string sname = Console.ReadLine();
+                        op.SearchContactLambda(cname, sname);
+                        count++;
+                        break;
                     default:
                         Console.WriteLine("End");//Default Condition For Exit the while loop
                         defcount++;
@@ -52,7 +60,6 @@ namespace AddressBook
                 }
             }
             Console.WriteLine("Count of Operations Performed On Address Book is : " + count);//print operations count
-            Console.ReadKey();
         }
     }
 }
