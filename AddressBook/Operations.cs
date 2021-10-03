@@ -5,13 +5,20 @@ using System.Linq;
 
 namespace AddressBook
 {
+    /// <summary>
+    /// Class to get Address Books and set into the dictionary
+    /// </summary>
     public class Operations
     {
         List<Contacts> listcontacts = new List<Contacts>();//list declaration to store the contact details
-        List<Contacts> listcontacts2 = new List<Contacts>();
+        List<Contacts> listcontactsCity = new List<Contacts>();
+        List<Contacts> listcontactsState = new List<Contacts>();
         Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();//Dictionary for the multiple address books
-        Dictionary<string, Contacts> resultAddBook = new Dictionary<string, Contacts>();
-        public void Add(int num)//add method to add the contacts
+        /// <summary>
+        /// add method to add the contacts
+        /// </summary>
+        /// <param name="num"></param>
+        public void Add(int num)
         {          
             for (int i = 0; i < num ; i++)
             {
@@ -46,8 +53,10 @@ namespace AddressBook
                 });
             }
         }
-        
-        public void Print()//Uniqe method to check the repeated Contact
+        /// <summary>
+        /// Print method to Print the Contacts in the List Without Repeatation
+        /// </summary>
+        public void Print()
         {
             for (int i = 0; i < listcontacts.Count; i++)
             {
@@ -74,7 +83,13 @@ namespace AddressBook
                 Console.WriteLine("Email ID : " + i.Value.email);            
             }
         }
-        //Edit() method for Edit the Contacts
+        /// <summary>
+        /// Edit() method for Edit the Contacts
+        /// </summary>
+        /// <param name="name">To check the It is present in the List or not</param>
+        /// <param name="f_name">Edit the First Name</param>
+        /// <param name="l_name">Edit the Last name</param>
+        /// <param name="add">Address to edit</param>        
         public void Edit(string name,string f_name,string l_name,string add)//parameters given by the user
         {
             int index = -1;
@@ -99,7 +114,10 @@ namespace AddressBook
                 Console.WriteLine("This Name is Not in List ");
             }
         }
-        //Delete() method for Deleting the Contacts
+        /// <summary>
+        /// Delete() method for Deleting the Contacts
+        /// </summary>
+        /// <param name="f_name">To search the Name to delete</param>      
         public void Delete(string f_name)//First Name is passed into method to check the contact
         {
             int index = -1;
@@ -127,11 +145,17 @@ namespace AddressBook
         /// <param name="statename">State Name to find Persons</param>
         public void SearchContactLambda(string cityName,string statename)
         {          
-            listcontacts2 = listcontacts.FindAll(x => (x.city == cityName || x.state == statename));//Lambda Expression
+            listcontactsCity = listcontacts.FindAll(x => (x.city == cityName));//Lambda Expression to check the names in city
 
-            foreach (Contacts i in listcontacts2)
+            foreach (Contacts i in listcontactsCity)
             {
-                Console.WriteLine("First Name : "+i.first_Name);               
+                Console.WriteLine("Name present in {0} City is : {1}", cityName, i.first_Name);               
+            }
+            listcontactsState = listcontacts.FindAll(x => (x.state == statename));//Lambda Expression to check the Names in State
+
+            foreach (Contacts i in listcontactsState)
+            {
+                Console.WriteLine("Name present in {0} State is : {1}", statename, i.first_Name);
             }
         }
         
