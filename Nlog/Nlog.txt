@@ -1,0 +1,7 @@
+
+2021-10-05 04:02:37.7866 | Info ~ Contact is Added | 
+2021-10-05 04:03:39.9731 | Info ~ Contact is Added | 
+2021-10-05 04:03:55.9483 | Info ~ Contact is Printed | 
+2021-10-05 04:03:58.7494 | Info ~ Contact is Printed | 
+2021-10-05 04:04:29.0848 | Warn ~ User is Not Present | 
+2021-10-05 04:05:06.9340 | Info ~ Contact is Deleted | 

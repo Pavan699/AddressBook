@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using NLog;
 
 namespace AddressBook
 {
@@ -10,6 +11,9 @@ namespace AddressBook
     /// </summary>
     public class Operations
     {
+        //Logger to pass the message
+        public readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         List<Contacts> listcontacts = new List<Contacts>();//list declaration to store the contact details
         List<Contacts> listcontactsCity = new List<Contacts>();
         List<Contacts> listcontactsState = new List<Contacts>();
@@ -52,6 +56,7 @@ namespace AddressBook
                     email = email
                 });
             }
+            logger.Info("Contact is Added");
         }
         /// <summary>
         /// Print method to Print the Contacts in the List Without Repeatation
@@ -82,6 +87,7 @@ namespace AddressBook
                 Console.WriteLine("Phone No. : " + i.Value.phone_No);
                 Console.WriteLine("Email ID : " + i.Value.email);            
             }
+            logger.Info("Contact is Printed");
         }
         /// <summary>
         /// Edit() method for Edit the Contacts
@@ -108,10 +114,12 @@ namespace AddressBook
                 editContact.address = add;
                 listcontacts[index] = editContact;
                 Console.WriteLine("The Data of {0} is Edited ", name);
+                logger.Info("Contact is Edited");
             }
             else
             {
                 Console.WriteLine("This Name is Not in List ");
+                logger.Warn("User is Not Present");
             }
         }
         /// <summary>
@@ -132,10 +140,12 @@ namespace AddressBook
             {
                 listcontacts.RemoveAt(index);//Remove the contact 
                 Console.WriteLine("The Data of {0} is Deleted ",f_name);
+                logger.Info("Contact is Deleted");
             }
             else
             {
                 Console.WriteLine("This Name is Not in List ");
+                logger.Warn("Contact is Not in the list");
             }
         }
         /// <summary>
