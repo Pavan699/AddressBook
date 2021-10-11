@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using NLog;
+using System.IO;
 
 namespace AddressBook
 {
@@ -18,6 +19,8 @@ namespace AddressBook
         List<Contacts> listcontactsCity = new List<Contacts>();
         List<Contacts> listcontactsState = new List<Contacts>();
         Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();//Dictionary for the multiple address books
+
+        public string FilePath = @"D:\VS .net\AddressBook\AddressBook\Records.txt";
         /// <summary>
         /// add method to add the contacts
         /// </summary>
@@ -67,15 +70,16 @@ namespace AddressBook
             {
                 Contacts contact = listcontacts[i];
 
-                if (!addressBook.ContainsKey(contact.first_Name))//if condition to check the key is present or not
+                if (addressBook.ContainsKey(contact.first_Name))//if condition to check the key is present or not
                 {
+                    Console.WriteLine("This Name {0} is already there", contact.first_Name);
+                    logger.Error("Name Already Present");
+                }
+                else
+                {       
                     addressBook.Add(contact.first_Name, contact);//if not the add into the addressbook
                 }
-                // else
-                // {
-                //     Console.WriteLine("This Name {0} is already there", contact.first_Name);
-                // }
-            }                     
+            }
             foreach (var i in addressBook)//print the contact
             {
                 Console.WriteLine("First Name :::: " + i.Key );
@@ -163,13 +167,35 @@ namespace AddressBook
                 Console.WriteLine("Phone No. is : " + i.phone_No);
             }
             listcontactsState = listcontacts.FindAll(x => (x.state == statename));//Lambda Expression to check the Names in State
-
             foreach (Contacts i in listcontactsState)
             {
                 Console.WriteLine("Name present in {0} State is : {1}", statename, i.first_Name);
-                Console.WriteLine("Phone No. is : " + i.phone_No);
+                Console.WriteLine("Phone No. is : " + i.phone_No); 
             }
         }
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void StreamWriteFile()
+        {
+            StreamWriter sw =File.AppendText(FilePath);
+            for (int i = 0; i < listcontacts.Count; i++)
+            {
+                Contacts contact = listcontacts[i];
+
+                if (addressBook.ContainsKey(contact.first_Name))//if condition to check the key is present or not
+                {
+                    Console.WriteLine("This Name {0} is already there", contact.first_Name);
+                    logger.Error("Name Already Present");
+                }
+                else
+                {
+                    addressBook.Add(contact.first_Name, contact);//if not the add into the addressbook
+                    string data = "First Name : "+contact.first_Name + " Last Name : " + contact.last_Name + " Address : " + contact.address + " City : " + contact.city + " State : " + contact.state + " Zip : " + contact.zip + " Phone No. : " + contact.phone_No+" Email : "+contact.email;
+                    sw.WriteLine(data);
+                }
+            }
+            logger.Info("Data Added in text File");
+        }
     }
 }

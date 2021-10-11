@@ -5,3 +5,35 @@
 2021-10-05 04:03:58.7494 | Info ~ Contact is Printed | 
 2021-10-05 04:04:29.0848 | Warn ~ User is Not Present | 
 2021-10-05 04:05:06.9340 | Info ~ Contact is Deleted | 
+2021-10-09 06:51:20.2158 | Info ~ Contact is Added | 
+2021-10-09 06:51:22.1437 | Info ~ Contact is Printed | 
+2021-10-09 07:01:19.9001 | Info ~ Contact is Added | 
+2021-10-09 07:01:22.7479 | Info ~ Data Added in text File | 
+2021-10-09 07:03:54.5793 | Info ~ Contact is Added | 
+2021-10-09 07:03:57.5069 | Info ~ Data Added in text File | 
+2021-10-09 07:13:23.8150 | Info ~ Contact is Added | 
+2021-10-09 07:13:26.0717 | Info ~ Data Added in text File | 
+2021-10-09 07:16:27.8758 | Info ~ Contact is Added | 
+2021-10-09 07:16:30.7313 | Info ~ Data Added in text File | 
+2021-10-09 07:18:29.5081 | Info ~ Contact is Added | 
+2021-10-09 07:18:31.1313 | Info ~ Data Added in text File | 
+2021-10-09 07:26:30.1139 | Info ~ Contact is Added | 
+2021-10-09 07:26:32.1696 | Info ~ Data Added in text File | 
+2021-10-09 07:34:48.4566 | Info ~ Contact is Added | 
+2021-10-09 07:34:51.2142 | Info ~ Data Added in text File | 
+2021-10-10 00:10:43.0579 | Info ~ Contact is Added | 
+2021-10-10 00:10:46.5254 | Info ~ Data Added in text File | 
+2021-10-10 00:13:33.6657 | Info ~ Contact is Added | 
+2021-10-10 00:13:35.9368 | Info ~ Data Added in text File | 
+2021-10-10 00:24:46.4293 | Info ~ Contact is Added | 
+2021-10-10 00:24:49.7890 | Info ~ Data Added in text File | 
+2021-10-10 00:29:53.4568 | Info ~ Contact is Added | 
+2021-10-10 00:29:56.3346 | Info ~ Data Added in text File | 
+2021-10-11 07:26:37.5430 | Info ~ Contact is Added | 
+2021-10-11 07:26:40.4863 | Info ~ Data Added in text File | 
+2021-10-11 07:28:52.5962 | Info ~ Contact is Added | 
+2021-10-11 07:28:55.2167 | Info ~ Data Added in text File | 
+2021-10-11 07:33:06.9005 | Info ~ Contact is Added | 
+2021-10-11 07:33:08.7132 | Info ~ Data Added in text File | 
+2021-10-11 07:48:06.8249 | Info ~ Contact is Added | 
+2021-10-11 07:48:10.3432 | Info ~ Data Added in text File | 

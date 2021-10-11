@@ -16,7 +16,7 @@ namespace AddressBook
 
             while (defcount == 0)
             {
-                Console.WriteLine("1:Add Contact  2:Print Contact  3:Edit Contact  4:Delete Contact 5:FindContact 6.Exit");
+                Console.WriteLine("1:Add Contact  2:Print Contact  3:Edit Contact  4:Delete Contact 5:FindContact 6.FileIO 7.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());//variable for taking choice from the user
                 //Switch Case for doing Operations
                 switch(choice)
@@ -51,6 +51,10 @@ namespace AddressBook
                         string cname = Console.ReadLine();
                         string sname = Console.ReadLine();
                         op.SearchContactLambda(cname, sname);
+                        count++;
+                        break;
+                    case 6:
+                        op.StreamWriteFile();
                         count++;
                         break;
                     default:
