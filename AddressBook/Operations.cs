@@ -4,6 +4,9 @@ using System.Text;
 using System.Linq;
 using NLog;
 using System.IO;
+using CsvHelper;
+using CsvHelper.Configuration;
+using System.Globalization;
 
 namespace AddressBook
 {
@@ -21,6 +24,7 @@ namespace AddressBook
         Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();//Dictionary for the multiple address books
 
         public string FilePath = @"D:\VS .net\AddressBook\AddressBook\Records.txt";
+        public string CSVFilePath = @"D:\VS .net\AddressBook\AddressBook\CsvFile.csv";
         /// <summary>
         /// add method to add the contacts
         /// </summary>
@@ -198,6 +202,62 @@ namespace AddressBook
                 }
                 Console.WriteLine("Data Added in to the File");
                 logger.Info("Data Added in text File");
+            }
+        }
+        /// <summary>
+        /// Read the contacts in the file
+        /// </summary>
+        public void StreamReadFile()
+        {
+            if (File.Exists(FilePath))
+            {
+                using (StreamReader streamReader = File.OpenText(FilePath))
+                {
+                    String ContactDetails = "";
+                    while ((ContactDetails = streamReader.ReadLine()) != null)
+                    {
+                        Console.WriteLine((ContactDetails));
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No such file exists");
+            }
+            logger.Info("user Read the data");
+        }
+        /// <summary>
+        /// Write the file using csv helper
+        /// </summary>     
+        public void WriteContactsCsv()
+        {
+
+            //open the stream file in write mode
+            using (StreamWriter stream = new StreamWriter(CSVFilePath))
+            // open csv file in write mode
+            using (CsvWriter csvWriter = new CsvWriter(stream, CultureInfo.InvariantCulture))
+            {
+                csvWriter.WriteRecords(listcontacts);
+            }
+            Console.WriteLine("\nData line added to CSV file...");
+
+            ReadContactsCSV();
+        }
+
+        /// <summary>
+        /// read the file using csv helper
+        /// </summary>
+        public void ReadContactsCSV()
+        {
+            //open the stream file in write mode       
+            using (StreamReader reader = new StreamReader(CSVFilePath))
+            using (var read = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var contacts = read.GetRecords<Contacts>().ToList();
+                foreach (Contacts contact in contacts)
+                {
+                    Console.WriteLine(contact.first_Name + "," + contact.last_Name + "," + contact.address + "," + contact.city + "," + contact.state + "," + contact.zip + "," + contact.phone_No + "," + contact.email);
+                }
             }
         }
     }

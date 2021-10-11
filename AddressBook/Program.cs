@@ -16,7 +16,7 @@ namespace AddressBook
 
             while (defcount == 0)
             {
-                Console.WriteLine("1:Add Contact  2:Print Contact  3:Edit Contact  4:Delete Contact 5:FindContact 6.FileIO 7.Exit");
+                Console.WriteLine("1:Add Contact  2:Print Contact  3:Edit Contact  4:Delete Contact 5:FindContact 6.FileWriter 7.FileReader 8.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());//variable for taking choice from the user
                 //Switch Case for doing Operations
                 switch(choice)
@@ -55,6 +55,14 @@ namespace AddressBook
                         break;
                     case 6:
                         op.StreamWriteFile();
+                        count++;
+                        break;
+                    case 7:
+                        op.StreamReadFile();
+                        count++;
+                        break;
+                    case 8:
+                        op.WriteContactsCsv();
                         count++;
                         break;
                     default:
