@@ -174,28 +174,31 @@ namespace AddressBook
             }
         }
         /// <summary>
-        /// 
+        /// StreamWriteFile method to write the data
         /// </summary>
         public void StreamWriteFile()
         {
-            StreamWriter sw =File.AppendText(FilePath);
-            for (int i = 0; i < listcontacts.Count; i++)
+            if (File.Exists(FilePath))
             {
-                Contacts contact = listcontacts[i];
-
-                if (addressBook.ContainsKey(contact.first_Name))//if condition to check the key is present or not
+                //append the contacts in the file 
+                using (StreamWriter streamWriter = File.AppendText(FilePath))
                 {
-                    Console.WriteLine("This Name {0} is already there", contact.first_Name);
-                    logger.Error("Name Already Present");
+                    foreach (Contacts person in listcontacts)
+                    {
+                        streamWriter.WriteLine("\nFirstName: " + person.first_Name);
+                        streamWriter.WriteLine("LastName: " + person.last_Name);
+                        streamWriter.WriteLine("Address: " + person.address);
+                        streamWriter.WriteLine("City    : " + person.city);
+                        streamWriter.WriteLine("State   : " + person.state);
+                        streamWriter.WriteLine("ZipCode: " + person.zip);
+                        streamWriter.WriteLine("PhoneNum: " + person.phone_No);
+                        streamWriter.WriteLine("Email   : " + person.email);
+                    }
+                    streamWriter.Close();
                 }
-                else
-                {
-                    addressBook.Add(contact.first_Name, contact);//if not the add into the addressbook
-                    string data = "First Name : "+contact.first_Name + " Last Name : " + contact.last_Name + " Address : " + contact.address + " City : " + contact.city + " State : " + contact.state + " Zip : " + contact.zip + " Phone No. : " + contact.phone_No+" Email : "+contact.email;
-                    sw.WriteLine(data);
-                }
+                Console.WriteLine("Data Added in to the File");
+                logger.Info("Data Added in text File");
             }
-            logger.Info("Data Added in text File");
         }
     }
 }
