@@ -16,7 +16,7 @@ namespace AddressBook
 
             while (defcount == 0)
             {
-                Console.WriteLine("1:Add Contact  2:Print Contact  3:Edit Contact  4:Delete Contact 5:FindContact 6.FileWriter 7.FileReader 8.Exit");
+                Console.WriteLine("1:Add Contact  2:Print Contact  3:Edit Contact  4:Delete Contact 5:FindContact \n6.FileWriter 7.FileReader 8.CSVFile 9.JsonFile 10.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());//variable for taking choice from the user
                 //Switch Case for doing Operations
                 switch(choice)
@@ -64,6 +64,9 @@ namespace AddressBook
                     case 8:
                         op.WriteContactsCsv();
                         count++;
+                        break;
+                    case 9:
+                        op.JsonWrite();
                         break;
                     default:
                         Console.WriteLine("End");//Default Condition For Exit the while loop

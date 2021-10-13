@@ -7,6 +7,7 @@ using System.IO;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
+using Newtonsoft.Json;
 
 namespace AddressBook
 {
@@ -25,6 +26,7 @@ namespace AddressBook
 
         public string FilePath = @"D:\VS .net\AddressBook\AddressBook\Records.txt";
         public string CSVFilePath = @"D:\VS .net\AddressBook\AddressBook\CsvFile.csv";
+        public string jsonpath = @"D:\VS .net\AddressBook\AddressBook\ContactData.json";
         /// <summary>
         /// add method to add the contacts
         /// </summary>
@@ -242,8 +244,8 @@ namespace AddressBook
             Console.WriteLine("\nData line added to CSV file...");
 
             ReadContactsCSV();
+            logger.Info("CSV data Write");
         }
-
         /// <summary>
         /// read the file using csv helper
         /// </summary>
@@ -257,6 +259,21 @@ namespace AddressBook
                 foreach (Contacts contact in contacts)
                 {
                     Console.WriteLine(contact.first_Name + "," + contact.last_Name + "," + contact.address + "," + contact.city + "," + contact.state + "," + contact.zip + "," + contact.phone_No + "," + contact.email);
+                }
+            }
+        }
+        /// <summary>
+        /// method to write the data in JSON file
+        /// </summary>
+        /// <param name="keyValues"></param>
+        public void JsonWrite()
+        {
+            if (File.Exists(jsonpath))
+            {
+                string data = JsonConvert.SerializeObject(addressBook);
+                using (StreamWriter sw = new StreamWriter(jsonpath))
+                {
+                    sw.WriteLine(data);
                 }
             }
         }
