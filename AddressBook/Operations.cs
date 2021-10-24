@@ -5,7 +5,6 @@ using System.Linq;
 using NLog;
 using System.IO;
 using CsvHelper;
-using CsvHelper.Configuration;
 using System.Globalization;
 using Newtonsoft.Json;
 
@@ -19,7 +18,7 @@ namespace AddressBook
         //Logger to pass the message
         public readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        List<Contacts> listcontacts = new List<Contacts>();//list declaration to store the contact details
+        public List<Contacts> listcontacts = new List<Contacts>();//list declaration to store the contact details
         List<Contacts> listcontactsCity = new List<Contacts>();
         List<Contacts> listcontactsState = new List<Contacts>();
         Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();//Dictionary for the multiple address books
@@ -275,6 +274,28 @@ namespace AddressBook
                 {
                     sw.WriteLine(data);
                 }
+            }
+        }
+        /// <summary>
+        /// Linq for the address-book
+        /// </summary>
+        public void AddressBookLinq()
+        {
+            var CityRecords = from adrs in listcontacts
+                                 where adrs.city == "solapur"
+                                 select adrs;
+            Console.WriteLine("Addresses in the given city : ");
+            foreach(var add in CityRecords)
+            {
+                Console.WriteLine(add.first_Name + "," + add.last_Name + "," + add.address + "," + add.city + "," + add.state + "," + add.zip + "," + add.phone_No + "," + add.email);
+            }
+            var StateRecords = from adrs in listcontacts
+                                 where adrs.state == "maha"
+                                 select adrs;
+            Console.WriteLine("Addresses in the given State : ");
+            foreach (var add in StateRecords)
+            {
+                Console.WriteLine(add.first_Name + "," + add.last_Name + "," + add.address + "," + add.city + "," + add.state + "," + add.zip + "," + add.phone_No + "," + add.email);
             }
         }
     }
